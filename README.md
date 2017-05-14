@@ -1,1 +1,1 @@
-####Sample Allure2 project for dummy report generation
+#### Sample Allure2 project for dummy report generation
