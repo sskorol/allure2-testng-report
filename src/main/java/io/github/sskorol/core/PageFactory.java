@@ -22,6 +22,7 @@ public final class PageFactory {
     }
 
     @Step("Open {name}")
+    @SuppressWarnings("PMD.UnusedFormalParameter")
     private static void prettify(final String name) {
         // not implemented
     }

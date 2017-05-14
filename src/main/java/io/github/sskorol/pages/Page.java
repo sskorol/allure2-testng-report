@@ -1,7 +1,5 @@
 package io.github.sskorol.pages;
 
-/**
- * Author: sskorol
- */
+@SuppressWarnings("JavadocType")
 public interface Page {
 }

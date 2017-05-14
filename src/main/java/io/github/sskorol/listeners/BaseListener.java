@@ -1,9 +1,12 @@
 package io.github.sskorol.listeners;
 
-import io.qameta.allure.Allure;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
+
+import static io.qameta.allure.Allure.addByteAttachmentAsync;
+import static io.qameta.allure.Allure.addStreamAttachmentAsync;
+import static java.lang.ClassLoader.getSystemResourceAsStream;
 
 @SuppressWarnings("JavadocType")
 public class BaseListener implements IInvokedMethodListener {
@@ -16,12 +19,11 @@ public class BaseListener implements IInvokedMethodListener {
     @Override
     public void afterInvocation(final IInvokedMethod method, final ITestResult testResult) {
         if (method.isTestMethod()) {
-            Allure.addByteAttachmentAsync("Test log", "text/plain", "afterInvocationContent"::getBytes);
+            addByteAttachmentAsync("Test log", "text/plain", "afterInvocationContent"::getBytes);
 
             if (!testResult.isSuccess()) {
-                Allure.addStreamAttachmentAsync("Failure screenshot",
-                        "image/png",
-                        () -> ClassLoader.getSystemResourceAsStream("attachments/screenshot.png"));
+                addStreamAttachmentAsync("Failure screenshot", "image/png", () ->
+                        getSystemResourceAsStream("attachments/screenshot.png"));
             }
         }
     }

@@ -14,9 +14,6 @@ import java.util.stream.Stream;
 import static io.github.sskorol.core.PageFactory.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Author: sskorol
- */
 public class CommonTests {
 
     @DataProvider
