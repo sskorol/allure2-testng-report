@@ -1,0 +1,66 @@
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.8'
+    id 'java'
+    id 'ru.vyarus.quality' version '2.1.0'
+}
+
+group 'io.github.sskorol'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'ru.vyarus.quality'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+    agent
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    agent "org.aspectj:aspectjweaver:1.8.10"
+    compile "org.assertj:assertj-core:3.6.2"
+    compile "org.jooq:joor:0.9.6"
+    compile "io.qameta.allure:allure-testng:2.0-BETA6"
+}
+
+task copyConfig(type: Copy) {
+    from 'src/test/resources/config'
+    into 'build/allure-results'
+}
+
+task copyHistory(type: Copy) {
+    from 'src/test/resources/history'
+    into 'build/allure-results/history'
+}
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+test {
+    useTestNG() {
+        listeners << 'io.github.sskorol.listeners.BaseListener'
+        suites 'src/test/resources/suites/parent.xml'
+    }
+
+    systemProperty 'allure.model.indentOutput', true
+    systemProperty 'allure.results.directory', 'build/allure-results'
+    systemProperty 'allure.link.issue.pattern', 'https://github.com/allure-framework/allure-docs/issues/{}'
+    systemProperty 'allure.link.tms.pattern', 'https://github.com/allure-framework/allure-docs/issues/{}'
+}
+
+test.dependsOn copyConfig, copyHistory
+
+quality {
+    checkstyleVersion = '7.6'
+    pmdVersion = '5.5.4'
+    findbugsVersion = '3.0.1'
+    codenarcVersion = '0.26.0'
+}

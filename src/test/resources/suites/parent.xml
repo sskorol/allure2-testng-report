@@ -1,0 +1,7 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Parent suite">
+	<suite-files>
+		<suite-file path="valid.xml"/>
+		<suite-file path="before-method-failure.xml"/>
+	</suite-files>
+</suite>
