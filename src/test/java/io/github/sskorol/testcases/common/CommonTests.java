@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
@@ -24,11 +25,13 @@ public class CommonTests {
     }
 
     @BeforeMethod
-    public void prepareEnvironment() {
+    public void prepareEnvironment(final Method method) {
+        retrieveData(method);
     }
 
     @AfterMethod
-    public void cleanUpEnvironment() {
+    public void cleanUpEnvironment(final Method method) {
+        cleanUpData(method);
     }
 
     @Issue("21")
@@ -90,5 +93,15 @@ public class CommonTests {
         open(LoginPage.class)
                 .loginWith(user)
                 .displayBalance();
+    }
+
+    @Step("Retrieve DB data for {method.name}.")
+    private void retrieveData(final Method method) {
+        // not implemented
+    }
+
+    @Step("Cleanup DB data for {method.name}.")
+    private void cleanUpData(final Method method) {
+        // not implemented
     }
 }
