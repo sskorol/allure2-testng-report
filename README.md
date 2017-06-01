@@ -4,11 +4,22 @@ Use the following command to generate `allure-results`:
 ```sh
 gradlew clean test
 ```
+Note that `allure` should be in PATH. 
+
+You can use [homebrew](https://brew.sh) for getting latest `allure` version for MacOS: 
+```
+brew update
+brew install allure
+```
+And [scoop](http://scoop.sh) for Windows: 
+```
+scoop install allure
+```
+
 Now you're ready to open test results report:
 ```sh
 allure serve build/allure-results
 ```
-Note that `allure` should be in PATH. You can use [brew formula](https://github.com/qameta/homebrew-allure) for getting latest `command-line` version.
 
 You'll see the following output:
 
