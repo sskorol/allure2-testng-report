@@ -13,7 +13,6 @@ configurations {
 
 repositories {
     jcenter()
-    mavenLocal()
     mavenCentral()
 }
 
@@ -21,12 +20,14 @@ group 'io.github.sskorol'
 description 'Allure 2 integration with TestNG'
 
 dependencies {
-    agent "org.aspectj:aspectjweaver:1.8.10"
-    compile("org.assertj:assertj-core:3.6.2",
-            "org.jooq:joor:0.9.6",
-            "io.qameta.allure:allure-testng:2.0-BETA7",
-            "org.slf4j:slf4j-simple:1.7.25")
+    agent 'org.aspectj:aspectjweaver:1.8.10'
+    compile('org.assertj:assertj-core:3.6.2',
+            'org.jooq:joor:0.9.6',
+            'io.qameta.allure:allure-testng:2.0-BETA9',
+            'org.slf4j:slf4j-simple:1.7.25')
 }
+
+[compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters']
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
