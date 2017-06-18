@@ -1,5 +1,4 @@
 plugins {
-    id 'io.franzbecker.gradle-lombok' version '1.8'
     id 'java'
     id 'ru.vyarus.quality' version '2.2.0'
 }
@@ -23,14 +22,16 @@ dependencies {
     agent 'org.aspectj:aspectjweaver:1.8.10'
     compile('org.assertj:assertj-core:3.6.2',
             'org.jooq:joor:0.9.6',
-            'io.qameta.allure:allure-testng:2.0-BETA9',
-            'org.slf4j:slf4j-simple:1.7.25')
+            'io.qameta.allure:allure-testng:2.0-BETA10',
+            'org.slf4j:slf4j-simple:1.7.25',
+            'org.projectlombok:lombok:1.16.16'
+    )
 }
 
 [compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters']
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.0'
 }
 
 task copyConfig(type: Copy) {
@@ -60,7 +61,3 @@ test {
 }
 
 test.dependsOn copyConfig, copyHistory
-
-lombok {
-    version = '1.16.16'
-}
