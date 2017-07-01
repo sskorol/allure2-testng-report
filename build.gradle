@@ -12,7 +12,7 @@ configurations {
 
 repositories {
     jcenter()
-    mavenCentral()
+    mavenLocal()
 }
 
 group 'io.github.sskorol'
@@ -21,8 +21,9 @@ description 'Allure 2 integration with TestNG'
 dependencies {
     agent 'org.aspectj:aspectjweaver:1.8.10'
     compile('org.assertj:assertj-core:3.6.2',
+            'io.github.sskorol:test-data-supplier:0.5.2',
             'org.jooq:joor:0.9.6',
-            'io.qameta.allure:allure-testng:2.0-BETA10',
+            'io.qameta.allure:allure-testng:2.0-BETA11',
             'org.slf4j:slf4j-simple:1.7.25',
             'org.projectlombok:lombok:1.16.16'
     )
@@ -51,6 +52,7 @@ test.doFirst {
 test {
     useTestNG() {
         listeners << 'io.github.sskorol.listeners.BaseListener'
+        listeners << 'io.github.sskorol.dataprovider.DataProviderTransformer'
         suites 'src/test/resources/suites/parent.xml'
     }
 
