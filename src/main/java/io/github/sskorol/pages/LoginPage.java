@@ -1,6 +1,7 @@
 package io.github.sskorol.pages;
 
 import io.github.sskorol.model.User;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 
 import static io.github.sskorol.core.PageFactory.at;
@@ -25,6 +26,7 @@ public class LoginPage implements Page {
 
     @Step("Type \"{password}\" into \"Password\" input.")
     public LoginPage typePassword(final String password) {
+        getAttachment();
         return this;
     }
 
@@ -62,5 +64,10 @@ public class LoginPage implements Page {
     private boolean isDisplayed() {
         assertThat(false).as("Popup is displayed").isTrue();
         return true;
+    }
+
+    @Attachment(value = "My super attachment", type = "application/json")
+    public byte[] getAttachment() {
+        return "{\"var\":\"val\"}".getBytes();
     }
 }

@@ -79,12 +79,16 @@ public class CommonTests {
                 .isPopupDisplayed();
     }
 
-    @Test(dataProvider = "getData")
+    /**
+     * Should <i>correctly</i> display user <b>balance</b>.
+     */
     @Feature("Payments")
     @Story("ALR-26")
     @TmsLink("25")
     @Issue("27")
+    @Description(useJavaDoc = true)
     @Severity(SeverityLevel.BLOCKER)
+    @Test(dataProvider = "getData")
     public void shouldDisplayUserBalance(final User user) {
         open(LoginPage.class)
                 .loginWith(user)

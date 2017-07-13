@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'ru.vyarus.quality' version '2.2.0'
+    id "io.qameta.allure" version "2.3"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -12,7 +13,6 @@ configurations {
 
 repositories {
     jcenter()
-    mavenLocal()
 }
 
 group 'io.github.sskorol'
@@ -20,19 +20,19 @@ description 'Allure 2 integration with TestNG'
 
 dependencies {
     agent 'org.aspectj:aspectjweaver:1.8.10'
-    compile('org.assertj:assertj-core:3.6.2',
-            'io.github.sskorol:test-data-supplier:0.5.2',
+    compile('org.assertj:assertj-core:3.8.0',
+            'io.github.sskorol:test-data-supplier:1.0.0',
             'org.jooq:joor:0.9.6',
-            'io.qameta.allure:allure-testng:2.0-BETA11',
+            'io.qameta.allure:allure-testng:2.0-BETA15',
             'org.slf4j:slf4j-simple:1.7.25',
-            'org.projectlombok:lombok:1.16.16'
+            'org.projectlombok:lombok:1.16.18'
     )
 }
 
 [compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters']
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
+    gradleVersion = '4.0.1'
 }
 
 task copyConfig(type: Copy) {
@@ -63,3 +63,11 @@ test {
 }
 
 test.dependsOn copyConfig, copyHistory
+
+allure {
+    autoconfigure = true
+    version = '2.2.1'
+    useTestNG {
+        version = '2.0-BETA15'
+    }
+}
