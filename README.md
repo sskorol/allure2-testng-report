@@ -11,4 +11,4 @@ gradlew allureServe
 ```
 Latest Allure version will be downloaded automatically. Then you should see the following output:
 
-![image](https://cloud.githubusercontent.com/assets/6638780/26036565/7bb38712-38e8-11e7-8d06-635d0feb8ec6.png)
+![image](https://user-images.githubusercontent.com/6638780/28187274-cfac0ac0-6826-11e7-8d98-a8283269b204.png)
