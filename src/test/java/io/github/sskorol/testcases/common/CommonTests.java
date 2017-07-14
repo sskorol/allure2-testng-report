@@ -36,7 +36,7 @@ public class CommonTests {
     @TmsLink("24")
     @Owner("sskorol")
     @Severity(SeverityLevel.CRITICAL)
-    @Test(dataProvider = "getData")
+    @Test(dataProvider = "getData", description = "Login with a valid user credentials")
     public void loginWithRegisteredUser(final User user) {
         open(LoginPage.class)
                 .loginWith(user);
