@@ -4,23 +4,11 @@ Use the following command to generate `allure-results`:
 ```sh
 gradlew clean test
 ```
-Note that `allure` should be in PATH. 
-
-You can use [homebrew](https://brew.sh) for getting latest `allure` version for MacOS: 
-```
-brew update
-brew install allure
-```
-And [scoop](http://scoop.sh) for Windows: 
-```
-scoop install allure
-```
-
-Now you're ready to open test results report:
+Now you're ready to generate report and open test results in a web browser:
 ```sh
-allure serve build/allure-results
+gradlew allureReport
+gradlew allureServe
 ```
+Latest Allure version will be downloaded automatically. Then you should see the following output:
 
-You'll see the following output:
-
-![image](https://cloud.githubusercontent.com/assets/6638780/26036565/7bb38712-38e8-11e7-8d06-635d0feb8ec6.png)
+![image](https://user-images.githubusercontent.com/6638780/28187274-cfac0ac0-6826-11e7-8d98-a8283269b204.png)
